@@ -1,3 +1,4 @@
-CS 417 Final Project
-TODO
+# CPU Temperatures
+## TODO
+
 
