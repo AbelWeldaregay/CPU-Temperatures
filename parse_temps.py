@@ -36,3 +36,19 @@ def parse_raw_temps(original_temps: TextIO,
     else:
         for step, line in enumerate(original_temps):
             yield (step * step_size), [float(entry) for entry in line.split()]
+
+def get_values_count(filename: TextIO):
+    """
+    Helper function to find the number of lines in the input file
+    
+    Args:
+        filename: the file name of the file to count the number of lines
+
+    Yields:
+        The number of lines in the file
+    """
+    count = 0
+    with open(filename, 'r') as f:
+        for line in f:
+            count += 1
+    return count
