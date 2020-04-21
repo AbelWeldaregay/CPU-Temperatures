@@ -16,4 +16,22 @@ def parse_raw_temps(original_temps: TextIO,
              core temps as floating point values (where _n_ is the number of
              CPU cores)
     """
-    print("TODO")
+    result = []
+    # result.append(original_temps.readline().strip().split(" ").insert(0, 0))
+    first_line = original_temps.readline()
+    first_line = first_line.strip().split(" ")
+    first_line.insert(0, 0)
+    i = 1
+    curr_step = step_size
+    result.append(first_line)
+    for line in original_temps:
+    	stripped_line = line.strip()
+    	line_list = stripped_line.split(" ")
+    	line_list.insert(0, curr_step)
+    	result.append(line_list)
+    	if i % 2 == 0:
+    		step_size *= 2
+    	curr_step += step_size
+    	i += 1
+
+    print('\n'.join(['\t'.join([str(cell) for cell in row]) for row in result]))
