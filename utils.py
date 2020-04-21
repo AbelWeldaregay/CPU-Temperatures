@@ -15,6 +15,13 @@ def parse_raw_temps(original_temps: TextIO,
     :yields: A tuple containing the next time step and a List containing _n_
              core temps as floating point values (where _n_ is the number of
              CPU cores)
+             Ex Matrix: 
+             Time (sec)	Core 0	Core 1	Core 2	Core 3
+			 0			61.0	63.0	50.0	58.0
+			 30			80.0	81.0	68.0	77.0
+			 60			62.0	63.0	52.0	60.0
+			 120		83.0	82.0	70.0	79.0
+			 180		68.0	69.0	58.0	65.0
     """
     result = []
     # result.append(original_temps.readline().strip().split(" ").insert(0, 0))
