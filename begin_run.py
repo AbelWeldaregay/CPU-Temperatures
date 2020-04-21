@@ -6,7 +6,8 @@ def begin_run():
 	includes_units = sys.argv[2] == "yes"  # set to False for files without units
 	temps = []
 	with open(input_file_path, 'r') as f:
-		temps = parse_raw_temps(f, 30, units=includes_units)
-		print(*temps, sep='\n') # * will unpack the list
+		temps = list(parse_raw_temps(f, 30, units=includes_units))
+
+	print(temps)
 if __name__ == "__main__":
 	begin_run()
