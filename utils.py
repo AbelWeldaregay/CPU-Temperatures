@@ -19,7 +19,7 @@ def get_raw_temps(input_file_path, step_size, includes_units):
 
 	return original_temps
 
-def build_cpu_temp_dict(rows, columns, original_temps, step_size):
+def build_cpu_temp_dict(rows, columns, original_temps, step_size, input_file_path, includes_units):
 	"""
 	Builds the CPU temparature dictionary using the core as 
 	the key and a list of values as the time step and temparature
@@ -32,14 +32,16 @@ def build_cpu_temp_dict(rows, columns, original_temps, step_size):
 	Yields:
 		A dictionary in the format [core_n : [time step, temperature]]
 	"""
-	temperature_dict = {}
-	for i in range(0, 4):
-		temperature_dict["core_{0}".format(i)] = [[0 for j in range(columns)] for x in range(rows)]
 
-	for value in original_temps:
-		row = int( value[0] / step_size)
+	with open(input_file_path, 'r') as input_file:
+		temperature_dict = {}
 		for i in range(0, 4):
-			temperature_dict["core_{0}".format(i)][row][0] = value[0]
-			temperature_dict["core_{0}".format(i)][row][1] = value[1][i]
+			temperature_dict["core_{0}".format(i)] = [[0 for j in range(columns)] for x in range(rows)]
+
+		for value in parse_raw_temps(input_file, step_size=step_size, units=includes_units):
+			row = int( value[0] / step_size)
+			for i in range(0, 4):
+				temperature_dict["core_{0}".format(i)][row][0] = value[0]
+				temperature_dict["core_{0}".format(i)][row][1] = value[1][i]
 
 	return temperature_dict

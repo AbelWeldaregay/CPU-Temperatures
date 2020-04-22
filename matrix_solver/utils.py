@@ -1,26 +1,36 @@
 import sys
 
-def multiply(A, B):
-	"""
-    Multiplies two given matrix
-    Parameters
-    ----------
-    arg1 : A 
-		The first matrix to be multiplied
-	arg2: B
-		The second matrix to be multiplied
-    Returns
-    -------
-    List
-        The result of A*B
+def multiply(lhs, rhs):
+
     """
-	result = [[0 for i in range(len(B[0]))] for j in range(len(A))]
-	
-	for i in range(len(result)):
-		for j in range(len(result[0])):
-			for k in range(len(A[0])):
-				result[i][j] += A[i][k]*B[k][j]
-	return result
+    Take two matrices and multiply them
+
+    Args:
+        lhs - (List) representing the left matrix to multiply 
+        rhs - (List) representing the right matrix to multiply
+
+        Yields:
+            Result of multiplying the right matrix by the left matrix
+ 
+    """
+
+    sum = 0
+    result = []
+    lhsRows = len(lhs)
+    rhsColumns = len(rhs[0])
+
+    n = len(lhs[0])
+   
+    for i in range(0, lhsRows):
+        result.append([]);
+        for j in range(0, rhsColumns):
+            # result[i].append([])
+            for k in range(0, n):
+                sum += lhs[i][k] * rhs[k][j]
+            result[i].append(sum)
+            sum = 0
+
+    return result
 
 def compute_x(A):
 	"""
@@ -29,19 +39,25 @@ def compute_x(A):
 	2. The second column is defined by taking each x value and plugging it into y=x. 2
 	3. The third column is defined by taking each x value and plugging it into y=x2.
 	"""
-	result = [[0 for i in range(2)] for j in range(len(A))]
-	for i in range(len(result)):
-		result[i][0] = 1
-		result[i][1] = A[i][0]
+	result = []
+	for i in range(0, len(A)):
+		temp = []
+		temp.append(1)
+		temp.append(A[i][0])
+		result.append(temp)
+
 	return result
+
 
 def compute_y(A):
 	"""
 	Builds the Y matrix using the algorithm from the lecture notes
 	"""
-	result = [0 for i in range(len(A))]
-	for i in range(len(result)):
-		result[i] = A[i][1]
+	result = []
+	for i in range(0, len(A)):
+		temp = []
+		temp.append(A[i][1])
+		result.append(temp)
 	return result
 
 def scale_row(A, row_idx, num_cols, s):
@@ -56,11 +72,7 @@ def transpose(A):
 	"""
 	Computes the transpose of a given matrix
 	"""
-	result = [[0 for i in range(len(A))] for j in range(len(A[0]))]
-	for i in range(len(A[0])):
-		for j in range(len(A)):
-			result[i][j] = A[j][i]
-	return result
+	return [[A[j][i] for j in range(len(A))] for i in range(len(A[0]))] 
 
 def find_largest_row_by_col(A, col_index, num_rows):
 	"""
@@ -82,7 +94,17 @@ def swap_row(matrix, row_one, row_two):
 	matrix[row_one] = matrix[row_two]
 	matrix[row_two] = temp
 
-	
+
+def compute_global_least_square_approximation(matrix):
+		x = compute_x(matrix)
+		y = compute_y(matrix)
+		x_transpose = transpose(x)
+		x_transpose_x = multiply(x_transpose, x)
+		x_transpose_y = multiply(x_transpose, y)
+		augmented_matrix = augment(x_transpose_x, x_transpose_y)
+		solution_matrix = gaussian(augmented_matrix)
+
+		return solution_matrix
 
 def eliminate(A, src_row_idx, num_cols, num_rows):
 	"""
