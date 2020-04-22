@@ -16,7 +16,7 @@ def begin_run():
 	temps_dict = build_cpu_temp_dict(rows, columns, None, step_size, input_file_path, includes_units)
 
 	for i in range(0, 4):
-		output_file_name = "output-core-{}.txt".format(i)
+		output_file_name = "output/output-core-{}.txt".format(i)
 		if os.path.exists(output_file_name):
 			os.remove(output_file_name)
 		output_file = open(output_file_name, 'a')

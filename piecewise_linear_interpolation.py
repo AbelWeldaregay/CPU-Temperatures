@@ -53,5 +53,5 @@ def write_to_file(systems_linear_equations, output_file, step_size):
 	for value in systems_linear_equations:
 		x_value = "{:.4f}".format(round(value[2], 4))
 		c_value = "{:.4f}".format(round(value[1], 4))
-		output_file.write(f'{value[0]} <= x < {value[0] + step_size}; \t y_{count} =  {c_value} + {x_value}x \t interpolation \n')
+		output_file.write(f'{value[0]} <= x < {value[0] + step_size}; \t y_{count} =  {c_value} + {x_value}x\t\tinterpolation \n')
 		count += 1
