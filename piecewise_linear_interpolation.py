@@ -11,6 +11,7 @@ def compute_slope(x1: int, y1: int, x2: int, y2: int) -> float:
 		y1: Y value of the first point
 		x2: X value of second point
 		y2: Y value of the second point
+	
 	Yields:
 		Returns the slope of the two given points
 	"""

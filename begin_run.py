@@ -1,10 +1,12 @@
 import sys
 import os
-from parse_temps import parse_raw_temps, get_values_count
+from parse_temps import get_values_count
 import piecewise_linear_interpolation
-from utils import build_cpu_temp_dict, get_raw_temps
+from utils import build_cpu_temp_dict
 import matrix_solver.utils as matrix_solver
-
+"""
+The entry point of the program
+"""
 def begin_run():
 	input_file_path = "./input/" + sys.argv[1]
 	includes_units = sys.argv[2] == "yes"  # set to False for files without units
@@ -14,7 +16,6 @@ def begin_run():
 	columns = 2
 
 	temps_dict = build_cpu_temp_dict(rows, columns, step_size, input_file_path, includes_units)
-
 	for i in range(0, 4):
 		output_file_name = "output/output-core-{}.txt".format(i)
 		if os.path.exists(output_file_name):
