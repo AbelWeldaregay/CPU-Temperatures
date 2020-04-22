@@ -1,7 +1,8 @@
 import sys
 from parse_temps import parse_raw_temps
+from typing import ( List, Iterator, List, Tuple, Dict )
 
-def get_raw_temps(input_file_path, step_size, includes_units):
+def get_raw_temps(input_file_path: str, step_size: int, includes_units: bool) -> List[Tuple[float, List[float]]]:
 	"""
 	Opens the file and reads the raw temps of the given file
 	
@@ -19,7 +20,7 @@ def get_raw_temps(input_file_path, step_size, includes_units):
 
 	return original_temps
 
-def build_cpu_temp_dict(rows, columns, original_temps, step_size, input_file_path, includes_units):
+def build_cpu_temp_dict(rows: int, columns: int, step_size: int, input_file_path: str, includes_units: bool) -> Dict[str, List[float]]:
 	"""
 	Builds the CPU temparature dictionary using the core as 
 	the key and a list of values as the time step and temparature

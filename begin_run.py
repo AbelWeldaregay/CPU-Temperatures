@@ -13,7 +13,7 @@ def begin_run():
 	rows = get_values_count(input_file_path)
 	columns = 2
 
-	temps_dict = build_cpu_temp_dict(rows, columns, None, step_size, input_file_path, includes_units)
+	temps_dict = build_cpu_temp_dict(rows, columns, step_size, input_file_path, includes_units)
 
 	for i in range(0, 4):
 		output_file_name = "output/output-core-{}.txt".format(i)

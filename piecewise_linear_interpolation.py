@@ -1,6 +1,7 @@
 import sys
+from typing import (List, TextIO)
 
-def compute_slope(x1, y1, x2, y2):
+def compute_slope(x1: int, y1: int, x2: int, y2: int) -> float:
 	"""
 	Computes the slope of two given points
 	Formula:
@@ -15,7 +16,7 @@ def compute_slope(x1, y1, x2, y2):
 	"""
 	return (y2 - y1) / (x2 - x1)
 
-def compute_y_intercept(x, m, y):
+def compute_y_intercept(x: int, m: float, y: int) -> int:
 	"""
 	Computes the y intercept given x, m (slope), and y values
 	Uses classical formula y = mx + b and solves for b (y)
@@ -32,7 +33,17 @@ def compute_y_intercept(x, m, y):
 
 	return y - (m*x)
 
-def compute_piecewise_linear_interpolation(matrix, step_size):
+def compute_piecewise_linear_interpolation(matrix: List[List[float]], step_size: int) -> List[List[float]]:
+	"""
+	Takes a matrix for a given core and computes the piecewise linear itnerpolation for each time step
+	
+	Args:
+		matrix: The matrix for a given core
+		step_size: The step size for sampling (always 30 in our case)
+
+	Yields:
+		A list of values containing the piecewise linear interpolation (x0, y intercept, and slope)
+	"""
 	systems_linear_equations = []
 	for i in range(0, len(matrix) - 1):
 		x0 = matrix[i][0]
@@ -48,7 +59,18 @@ def compute_piecewise_linear_interpolation(matrix, step_size):
 
 	return systems_linear_equations
 
-def write_to_file(systems_linear_equations, output_file, step_size):
+def write_to_file(systems_linear_equations: List[List[float]], output_file: TextIO, step_size: int) -> None:
+	"""
+	Writes the list of results from computing the piecewise linear interpolation to an output file
+
+	Args:
+		systems_linear_equations: The results from computing the piecewise linear interpolation
+		output_file: The file to write the results to
+		step_size: The step size of the sampling rate (always 30 for our case)
+	
+	Yields:
+		None
+	"""
 	count = 0
 	for value in systems_linear_equations:
 		x_value = "{:.4f}".format(round(value[2], 4))

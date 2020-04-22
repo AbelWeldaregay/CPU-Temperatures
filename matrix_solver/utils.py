@@ -1,39 +1,32 @@
 import sys
 import os
+from typing import (List, TextIO)
 
-def multiply(lhs, rhs):
-
+def multiply(A: List[List[int]], B: List[List[int]]):
+	"""
+    Multiplies two given matrix
+    Parameters
+    ----------
+    arg1 : A 
+		The first matrix to be multiplied
+	arg2: B
+		The second matrix to be multiplied
+    Returns
+    -------
+    List
+        The result of A*B
     """
-    Take two matrices and multiply them
+	result = []
+	sum = 0
+	for i in range(0, len(A)):
+		result.append([])
+		for j in range(0, len(B[0])):
+			for k in range(0, len(A[0])):
+				sum += A[i][k] * B[k][j]
+			result[i].append(sum)
+	return result
 
-    Args:
-        lhs - (List) representing the left matrix to multiply 
-        rhs - (List) representing the right matrix to multiply
-
-        Yields:
-            Result of multiplying the right matrix by the left matrix
- 
-    """
-
-    sum = 0
-    result = []
-    lhsRows = len(lhs)
-    rhsColumns = len(rhs[0])
-
-    n = len(lhs[0])
-   
-    for i in range(0, lhsRows):
-        result.append([]);
-        for j in range(0, rhsColumns):
-            # result[i].append([])
-            for k in range(0, n):
-                sum += lhs[i][k] * rhs[k][j]
-            result[i].append(sum)
-            sum = 0
-
-    return result
-
-def compute_x(A):
+def compute_x(A: List[List[int]]):
 	"""
 	Builds the X matrix using the algorithm from the lecture notes
 	1. The first column is defined by taking each x value and plugging it into y=1.
@@ -50,7 +43,7 @@ def compute_x(A):
 	return result
 
 
-def compute_y(A):
+def compute_y(A: List[List[int]]) -> List[List[int]]:
 	"""
 	Builds the Y matrix using the algorithm from the lecture notes
 	"""
@@ -61,7 +54,7 @@ def compute_y(A):
 		result.append(temp)
 	return result
 
-def scale_row(A, row_idx, num_cols, s):
+def scale_row(A: List[List[int]], row_idx: int, num_cols: int, s: int) -> List[List[int]]:
 	"""
 	Scales row by a given scaler s
 	"""
@@ -69,13 +62,13 @@ def scale_row(A, row_idx, num_cols, s):
 		A[row_idx][j] = A[row_idx][j] / s
 	return A
 
-def transpose(A):
+def transpose(A: List[List[int]]) -> List[List[int]]:
 	"""
 	Computes the transpose of a given matrix
 	"""
 	return [[A[j][i] for j in range(len(A))] for i in range(len(A[0]))] 
 
-def find_largest_row_by_col(A, col_index, num_rows):
+def find_largest_row_by_col(A: List[List[int]], col_index: int, num_rows: int) -> int:
 	"""
 	Finds the largest row for a given column
 	"""
@@ -87,7 +80,7 @@ def find_largest_row_by_col(A, col_index, num_rows):
 			largest_row_idx = i
 	return largest_row_idx
 
-def swap_row(matrix, row_one, row_two):
+def swap_row(matrix: List[List[int]], row_one: int, row_two: int) -> None:
 	"""
 	Swaps two given rows of a matrix
 	"""
@@ -96,7 +89,7 @@ def swap_row(matrix, row_one, row_two):
 	matrix[row_two] = temp
 
 
-def compute_global_least_square_approximation(matrix, output_file):
+def compute_global_least_square_approximation(matrix: List[List[int]], output_file) -> List[List[int]]:
 		x = compute_x(matrix)
 		y = compute_y(matrix)
 		x_transpose = transpose(x)
@@ -107,12 +100,12 @@ def compute_global_least_square_approximation(matrix, output_file):
 		write_to_file(solution_matrix, output_file, x[len(x) - 1][1])
 		return solution_matrix
 
-def write_to_file(solution_matrix, output_file, max_time):
+def write_to_file(solution_matrix: List[List[int]], output_file: TextIO, max_time: int) -> List[List[int]]:
 	c0 = round(solution_matrix[0][2], 6)
 	c1 = round(solution_matrix[1][2], 6)
 	output_file.write(f'0 <= x < {max_time}; y = {c0} + {c1}x; least-squares \n ')
 
-def eliminate(A, src_row_idx, num_cols, num_rows):
+def eliminate(A: List[List[int]], src_row_idx: int, num_cols: int, num_rows: int):
 	"""
 	Eliminates row by doing subtraction operations
 	"""
@@ -124,7 +117,7 @@ def eliminate(A, src_row_idx, num_cols, num_rows):
 		A[i][start_col] = 0
 	return A
 
-def augment(x_transpose_x, x_transpose_y):
+def augment(x_transpose_x: List[List[int]], x_transpose_y: List[List[int]]):
 	"""
 	Computes the augmented matrix to be used
 	in gaussian elimination
@@ -140,7 +133,7 @@ def augment(x_transpose_x, x_transpose_y):
 				result[i][j+1] = x_transpose_y[i][0]
 	return result
 
-def gaussian(matrix):
+def gaussian(matrix: List[List[int]]) -> List[List[int]]:
     """
     Solves matrix using gaussian elimination
     1. itterate through the rows
@@ -164,7 +157,7 @@ def gaussian(matrix):
 
     return matrix
 
-def back_solve(matrix):
+def back_solve(matrix: List[List[int]]) -> List[int]:
 	"""
 	Starts from the end and backsolves to find the identity matrix
 	"""
@@ -181,20 +174,3 @@ def back_solve(matrix):
 			matrix[j][aug_col_idx] = matrix[j][aug_col_idx] - (s * matrix[i][aug_col_idx])
 
 	return matrix
-
-def print_result(matrix):
-	column_count = len(matrix[0]) - 1
-	vector = [0 for i in range(len(matrix))]
-	for i in range(len(matrix)):
-		vector[i] = matrix[i][column_count]
-	result = "phi_hat = " + str(vector[0]) + " + " + str(vector[1]) + "x " + " + " + str(vector[2]) + "x^2"
-	print(result)
-
-def begin_run(X, Y):
-	x_transpose = transpose(X)
-	x_transpose_x = multiply(x_transpose, X)
-	x_transpose_y = multiply(x_transpose, Y)
-	x_transpose_x_x_transpose_y = augment(x_transpose_x, x_transpose_y)
-	result = gaussian(x_transpose_x_x_transpose_y)
-	rref = back_solve(result)
-	print_result(rref)

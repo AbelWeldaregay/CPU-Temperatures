@@ -1,4 +1,4 @@
-0 <= x < 35610; y = 839.203033 + 0.003129x; least-squares 
+0 <= x < 35610; y = 37.163015 + 0.006385x; least-squares 
  0 <= x < 30; 	 y_0 =  61.0000 + 0.6333x		interpolation 
 30 <= x < 60; 	 y_1 =  98.0000 + -0.6000x		interpolation 
 60 <= x < 90; 	 y_2 =  20.0000 + 0.7000x		interpolation 
