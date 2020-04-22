@@ -16,8 +16,7 @@ def begin_run():
 
 	for i in range(0, 4):
 		output_file_name = "output-core-{}.txt".format(i)
-		solution_matrix = matrix_solver.compute_global_least_square_approximation(temps_dict["core_{}".format(i)])
-		print(solution_matrix)
-		
+		solution_matrix = matrix_solver.compute_global_least_square_approximation(temps_dict["core_{}".format(i)], output_file_name)
+		# matrix_solver.write_to_file(solution_matrix, output_file_name, x[len(x) - 1][1])
 if __name__ == "__main__":
 	begin_run()

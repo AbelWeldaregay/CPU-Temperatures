@@ -1,4 +1,5 @@
 import sys
+import os
 
 def multiply(lhs, rhs):
 
@@ -95,7 +96,7 @@ def swap_row(matrix, row_one, row_two):
 	matrix[row_two] = temp
 
 
-def compute_global_least_square_approximation(matrix):
+def compute_global_least_square_approximation(matrix, output_file_name):
 		x = compute_x(matrix)
 		y = compute_y(matrix)
 		x_transpose = transpose(x)
@@ -103,8 +104,16 @@ def compute_global_least_square_approximation(matrix):
 		x_transpose_y = multiply(x_transpose, y)
 		augmented_matrix = augment(x_transpose_x, x_transpose_y)
 		solution_matrix = gaussian(augmented_matrix)
-
+		write_to_file(solution_matrix, output_file_name, x[len(x) - 1][1])
 		return solution_matrix
+
+def write_to_file(solution_matrix, output_file_name, max_time):
+	c0 = round(solution_matrix[0][2], 6)
+	c1 = round(solution_matrix[1][2], 6)
+	if os.path.exists(output_file_name):
+		os.remove(output_file_name)
+	output_file = open(output_file_name, "a")
+	output_file.write(f'0 <= x < {max_time}; y = {c0} + {c1}x; least-squares \n ')
 
 def eliminate(A, src_row_idx, num_cols, num_rows):
 	"""
