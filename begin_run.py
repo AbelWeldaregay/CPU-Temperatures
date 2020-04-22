@@ -1,6 +1,7 @@
 import sys
+import os
 from parse_temps import parse_raw_temps, get_values_count
-from piecewise_linear_interpolation import compute_slope, compute_y_intercept
+import piecewise_linear_interpolation
 from utils import build_cpu_temp_dict, get_raw_temps
 import matrix_solver.utils as matrix_solver
 
@@ -16,7 +17,13 @@ def begin_run():
 
 	for i in range(0, 4):
 		output_file_name = "output-core-{}.txt".format(i)
-		solution_matrix = matrix_solver.compute_global_least_square_approximation(temps_dict["core_{}".format(i)], output_file_name)
-		# matrix_solver.write_to_file(solution_matrix, output_file_name, x[len(x) - 1][1])
+		if os.path.exists(output_file_name):
+			os.remove(output_file_name)
+		output_file = open(output_file_name, 'a')
+		solution_matrix = matrix_solver.compute_global_least_square_approximation(temps_dict["core_{}".format(i)], output_file)
+		systems_linear_equations = piecewise_linear_interpolation.compute_piecewise_linear_interpolation(temps_dict["core_{}".format(i)], step_size)
+		piecewise_linear_interpolation.write_to_file(systems_linear_equations, output_file, step_size)
+		output_file.close()
+
 if __name__ == "__main__":
 	begin_run()
