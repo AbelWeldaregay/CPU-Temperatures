@@ -1,25 +1,17 @@
 import sys
 from parse_temps import parse_raw_temps, get_values_count
 from piecewise_linear_interpolation import compute_slope, compute_y_intercept
-
+from utils import build_cpu_temp_dict, get_raw_temps
 
 def begin_run():
 	input_file_path = "./input/" + sys.argv[1]
 	includes_units = sys.argv[2] == "yes"  # set to False for files without units
-	temps = []
-	with open(input_file_path, 'r') as f:
-		temps = list(parse_raw_temps(f, 30, units=includes_units))
-	print(compute_slope(1, 1, 2, 2))
-	print("y intercept: ", compute_y_intercept(2,5,3))
-
-	temp_values = {}
+	step_size = 30
+	original_temps = get_raw_temps(input_file_path, step_size, includes_units)
 	rows = get_values_count(input_file_path)
 	columns = 2
 
-	for i in range(0, 4):
-		temp_values["core_{0}".format(i)] = [[0 for j in range(columns)] for x in range(rows)]
-
-	print(temp_values)
+	print(build_cpu_temp_dict(rows, columns, original_temps, step_size))
 
 if __name__ == "__main__":
 	begin_run()
