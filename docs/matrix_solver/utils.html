@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module utils</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>utils</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="../../matrix_solver/utils.py">/CPU-Temperatures/matrix_solver/utils.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="os.html">os</a><br>
+</td><td width="25%" valign=top><a href="sys.html">sys</a><br>
+</td><td width="25%" valign=top></td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-augment"><strong>augment</strong></a>(x_transpose_x: List[List[int]], x_transpose_y: List[List[int]]) -&gt; List[List[int]]</dt><dd><tt>Computes&nbsp;the&nbsp;augmented&nbsp;matrix&nbsp;to&nbsp;be&nbsp;used<br>
+in&nbsp;gaussian&nbsp;elimination<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x_transpose_x:&nbsp;The&nbsp;matrix&nbsp;for&nbsp;x&nbsp;transpose&nbsp;x<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x_transpose_y:&nbsp;The&nbsp;matrix&nbsp;for&nbsp;x&nbsp;transpose&nbsp;y<br>
+&nbsp;<br>
+Yields:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result:&nbsp;The&nbsp;augmented&nbsp;matrix&nbsp;of&nbsp;x_transpose_x&nbsp;and&nbsp;x_transpose_y</tt></dd></dl>
+ <dl><dt><a name="-back_solve"><strong>back_solve</strong></a>(matrix: List[List[int]]) -&gt; List[int]</dt><dd><tt>Starts&nbsp;from&nbsp;the&nbsp;end&nbsp;and&nbsp;backsolves&nbsp;to&nbsp;find&nbsp;the&nbsp;identity&nbsp;matrix<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix:&nbsp;The&nbsp;matrix&nbsp;to&nbsp;find&nbsp;the&nbsp;identitiy&nbsp;matrix&nbsp;for<br>
+&nbsp;<br>
+Yields:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix:&nbsp;The&nbsp;identity&nbsp;matrix</tt></dd></dl>
+ <dl><dt><a name="-compute_global_least_square_approximation"><strong>compute_global_least_square_approximation</strong></a>(matrix: List[List[int]], output_file) -&gt; List[List[int]]</dt><dd><tt>Computes&nbsp;the&nbsp;global&nbsp;least&nbsp;square&nbsp;appoximation&nbsp;for&nbsp;a&nbsp;given&nbsp;core<br>
+and&nbsp;calls&nbsp;method&nbsp;to&nbsp;write&nbsp;it&nbsp;to&nbsp;a&nbsp;output&nbsp;file<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix:&nbsp;The&nbsp;matrix&nbsp;representation&nbsp;of&nbsp;a&nbsp;core&nbsp;to&nbsp;compute<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output_file:&nbsp;The&nbsp;output&nbsp;file&nbsp;for&nbsp;the&nbsp;specific&nbsp;core<br>
+&nbsp;<br>
+Yields:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;solution_matrix:&nbsp;The&nbsp;matrix&nbsp;after&nbsp;gaussian&nbsp;elimination</tt></dd></dl>
+ <dl><dt><a name="-compute_x"><strong>compute_x</strong></a>(A: List[List[int]]) -&gt; List[List[int]]</dt><dd><tt>Builds&nbsp;the&nbsp;X&nbsp;matrix&nbsp;using&nbsp;the&nbsp;algorithm&nbsp;from&nbsp;the&nbsp;lecture&nbsp;notes<br>
+1.&nbsp;The&nbsp;first&nbsp;column&nbsp;is&nbsp;defined&nbsp;by&nbsp;taking&nbsp;each&nbsp;x&nbsp;value&nbsp;and&nbsp;plugging&nbsp;it&nbsp;into&nbsp;y=1.<br>
+2.&nbsp;The&nbsp;second&nbsp;column&nbsp;is&nbsp;defined&nbsp;by&nbsp;taking&nbsp;each&nbsp;x&nbsp;value&nbsp;and&nbsp;plugging&nbsp;it&nbsp;into&nbsp;y=x.&nbsp;2<br>
+3.&nbsp;The&nbsp;third&nbsp;column&nbsp;is&nbsp;defined&nbsp;by&nbsp;taking&nbsp;each&nbsp;x&nbsp;value&nbsp;and&nbsp;plugging&nbsp;it&nbsp;into&nbsp;y=x2.<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A:&nbsp;The&nbsp;matrix&nbsp;to&nbsp;build&nbsp;the&nbsp;x&nbsp;matrix&nbsp;for<br>
+&nbsp;<br>
+Yields:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result:&nbsp;the&nbsp;x&nbsp;matrix</tt></dd></dl>
+ <dl><dt><a name="-compute_y"><strong>compute_y</strong></a>(A: List[List[int]]) -&gt; List[List[int]]</dt><dd><tt>Builds&nbsp;the&nbsp;Y&nbsp;matrix&nbsp;using&nbsp;the&nbsp;algorithm&nbsp;from&nbsp;the&nbsp;lecture&nbsp;notes<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A:&nbsp;The&nbsp;matrix&nbsp;to&nbsp;build&nbsp;the&nbsp;y&nbsp;matrix&nbsp;for<br>
+&nbsp;<br>
+Yields:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;result:&nbsp;The&nbsp;y&nbsp;matrix</tt></dd></dl>
+ <dl><dt><a name="-eliminate"><strong>eliminate</strong></a>(A: List[List[int]], src_row_idx: int, num_cols: int, num_rows: int) -&gt; List[List[int]]</dt><dd><tt>Eliminates&nbsp;row&nbsp;by&nbsp;doing&nbsp;subtraction&nbsp;operations<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A:&nbsp;The&nbsp;matrix&nbsp;to&nbsp;put&nbsp;in&nbsp;row&nbsp;reduced&nbsp;row&nbsp;echelon&nbsp;form<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;src_row_idx:&nbsp;The&nbsp;row&nbsp;to&nbsp;reduce<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;num_cols:&nbsp;The&nbsp;number&nbsp;of&nbsp;columns&nbsp;in&nbsp;the&nbsp;given&nbsp;matrix<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;num_rows:&nbsp;The&nbsp;number&nbsp;of&nbsp;rows&nbsp;in&nbsp;the&nbsp;given&nbsp;matrix<br>
+&nbsp;<br>
+Yields:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A:&nbsp;The&nbsp;reduced&nbsp;version&nbsp;of&nbsp;the&nbsp;given&nbsp;matrix</tt></dd></dl>
+ <dl><dt><a name="-find_largest_row_by_col"><strong>find_largest_row_by_col</strong></a>(A: List[List[int]], col_index: int, num_rows: int) -&gt; int</dt><dd><tt>Finds&nbsp;the&nbsp;largest&nbsp;row&nbsp;for&nbsp;a&nbsp;given&nbsp;column<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A:&nbsp;The&nbsp;matrix&nbsp;to&nbsp;look&nbsp;inside&nbsp;to&nbsp;find&nbsp;the&nbsp;largest&nbsp;row&nbsp;by&nbsp;column<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;col_index:&nbsp;the&nbsp;column&nbsp;index&nbsp;to&nbsp;find&nbsp;the&nbsp;largest&nbsp;row<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;num_rows:&nbsp;the&nbsp;number&nbsp;of&nbsp;rows&nbsp;in&nbsp;the&nbsp;given&nbsp;matrix<br>
+&nbsp;<br>
+Yields:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;largest_row_idx:&nbsp;The&nbsp;index&nbsp;of&nbsp;the&nbsp;largest&nbsp;row&nbsp;for&nbsp;the&nbsp;given&nbsp;column&nbsp;index</tt></dd></dl>
+ <dl><dt><a name="-gaussian"><strong>gaussian</strong></a>(matrix: List[List[int]]) -&gt; List[List[int]]</dt><dd><tt>Solves&nbsp;matrix&nbsp;using&nbsp;gaussian&nbsp;elimination<br>
+1.&nbsp;itterate&nbsp;through&nbsp;the&nbsp;rows<br>
+2.&nbsp;find&nbsp;the&nbsp;max&nbsp;index<br>
+3.&nbsp;swap&nbsp;rows&nbsp;i&nbsp;and&nbsp;max&nbsp;index<br>
+4.&nbsp;scale&nbsp;the&nbsp;current&nbsp;row<br>
+5.&nbsp;do&nbsp;subtraction&nbsp;operations&nbsp;to&nbsp;eliminate&nbsp;row<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix:&nbsp;The&nbsp;matrix&nbsp;to&nbsp;run&nbsp;gaussian&nbsp;elimnation&nbsp;for<br>
+&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;Yields:&nbsp;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix:&nbsp;The&nbsp;matrix&nbsp;after&nbsp;running&nbsp;gaussian&nbsp;elimination&nbsp;(row&nbsp;reduced&nbsp;echolan&nbsp;form)</tt></dd></dl>
+ <dl><dt><a name="-multiply"><strong>multiply</strong></a>(A: List[List[int]], B: List[List[int]]) -&gt; List[List[int]]</dt><dd><tt>Multiplies&nbsp;two&nbsp;given&nbsp;matrix<br>
+Parameters<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A:&nbsp;The&nbsp;first&nbsp;matrix&nbsp;to&nbsp;be&nbsp;multiplied<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B:&nbsp;The&nbsp;second&nbsp;matrix&nbsp;to&nbsp;be&nbsp;multiplied<br>
+&nbsp;<br>
+Yields:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;result:&nbsp;The&nbsp;result&nbsp;of&nbsp;A*B</tt></dd></dl>
+ <dl><dt><a name="-scale_row"><strong>scale_row</strong></a>(A: List[List[int]], row_idx: int, num_cols: int, s: int) -&gt; List[List[int]]</dt><dd><tt>Scales&nbsp;row&nbsp;by&nbsp;a&nbsp;given&nbsp;scaler&nbsp;s<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A:&nbsp;The&nbsp;matrix&nbsp;that&nbsp;will&nbsp;be&nbsp;scaled<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;row_idx:&nbsp;The&nbsp;row&nbsp;that&nbsp;will&nbsp;be&nbsp;scaled<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;num_cols:&nbsp;The&nbsp;number&nbsp;of&nbsp;columns&nbsp;in&nbsp;the&nbsp;matrix&nbsp;to&nbsp;scale<br>
+&nbsp;<br>
+Yields:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A:&nbsp;The&nbsp;scaled&nbsp;version&nbsp;of&nbsp;matrix&nbsp;A</tt></dd></dl>
+ <dl><dt><a name="-swap_row"><strong>swap_row</strong></a>(matrix: List[List[int]], row_one: int, row_two: int) -&gt; None</dt><dd><tt>Swaps&nbsp;two&nbsp;given&nbsp;rows&nbsp;of&nbsp;a&nbsp;matrix<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;matrix:&nbsp;The&nbsp;matrix&nbsp;in&nbsp;which&nbsp;to&nbsp;swap&nbsp;the&nbsp;rows&nbsp;for<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;row_one:&nbsp;The&nbsp;first&nbsp;row&nbsp;that&nbsp;will&nbsp;be&nbsp;swapped<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;row_two:&nbsp;The&nbsp;second&nbsp;row&nbsp;that&nbsp;will&nbsp;be&nbsp;swapped<br>
+&nbsp;<br>
+Yields:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;None</tt></dd></dl>
+ <dl><dt><a name="-transpose"><strong>transpose</strong></a>(A: List[List[int]]) -&gt; List[List[int]]</dt><dd><tt>Computes&nbsp;the&nbsp;transpose&nbsp;of&nbsp;a&nbsp;given&nbsp;matrix<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A:&nbsp;The&nbsp;matrix&nbsp;to&nbsp;take&nbsp;the&nbsp;transpose&nbsp;of<br>
+&nbsp;<br>
+Yields:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;transpose&nbsp;of&nbsp;the&nbsp;given&nbsp;matrix</tt></dd></dl>
+ <dl><dt><a name="-write_to_file"><strong>write_to_file</strong></a>(solution_matrix: List[List[int]], output_file: &lt;class 'TextIO'&gt;, end_time: int) -&gt; List[List[int]]</dt><dd><tt>Writes&nbsp;the&nbsp;solution&nbsp;matrix&nbsp;from&nbsp;computing&nbsp;the&nbsp;global&nbsp;least&nbsp;sqaure&nbsp;approximation&nbsp;to&nbsp;an&nbsp;output&nbsp;file<br>
+&nbsp;<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;solution_matrix:&nbsp;The&nbsp;result&nbsp;from&nbsp;computing&nbsp;the&nbsp;global&nbsp;least&nbsp;square&nbsp;approximaton<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;output_file:&nbsp;The&nbsp;output&nbsp;file&nbsp;to&nbsp;write&nbsp;to<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;end_time:&nbsp;The&nbsp;end&nbsp;time&nbsp;(&nbsp;the&nbsp;maximum&nbsp;time&nbsp;at&nbsp;the&nbsp;last&nbsp;row&nbsp;of&nbsp;the&nbsp;file)</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>List</strong> = typing.List</td></tr></table>
+</body></html>
