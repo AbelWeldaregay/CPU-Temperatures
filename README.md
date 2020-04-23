@@ -1,5 +1,9 @@
 # CPU Temperatures
 
+This program takes CPU Temeratures as an input file and creates a picewise
+linear interpolation for each core and a global least squares approximation
+for each core.
+
 ## Language
 - [Python 3.7.4](https://www.python.org/downloads/release/python-374/)
 
