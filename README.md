@@ -50,7 +50,7 @@ If you are having compilation errors, here are some of the possible issues:
 
 ## Documentation
 
-The documentation for this project is generated using [Pydoc](https://docs.python.org/3/library/pydoc.html)
+The documentation for this project is generated using [Pydoc](https://docs.python.org/3/library/pydoc.html).
 Html output is genrated and can be found in `CPU-Temperatures/docs/` directory. You can also view the documentation
 for a python file by giving the following command
 
