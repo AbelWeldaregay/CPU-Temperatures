@@ -1,6 +1,6 @@
 # CPU Temperatures
 
-This program takes CPU Temeratures as an input file and creates a picewise
+This program takes CPU Temeratures as an input file and creates a piecewise
 linear interpolation for each core and a global least squares approximation
 for each core.
 
